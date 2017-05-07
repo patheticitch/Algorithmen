@@ -1,24 +1,19 @@
 package alg.a01;
 
-import java.io.PrintWriter;
-import java.util.ArrayList;
-
 public class Quicksort {
 
 	public static void main(String[] args) {
-		test(10);
-		test(5);
 
 	}
 
-	
 	public static void quicksort(int[] array) {
-		//starts the quicksort
+		// starts the quicksort
 		quicksort(array, 0, array.length - 1);
 	}
 
-	public static void quicksort(int[] array, int left, int right) {
-		//terminates the method if the array behind the pivot is only one element long
+	private static void quicksort(int[] array, int left, int right) {
+		// terminates the method if the array behind the pivot is only one
+		// element long
 		if (right - left <= 0)
 			return;
 		else {
@@ -28,8 +23,11 @@ public class Quicksort {
 		}
 
 	}
-	// devide function returns the position of the pivot element. Everything behind the pivot element is smaller and everything after the pivot is larger than itself
-	public static int devide(int[] array, int left, int right) {
+
+	// devide function returns the position of the pivot element. Everything
+	// behind the pivot element is smaller and everything after the pivot is
+	// larger than itself
+	private static int devide(int[] array, int left, int right) {
 		// choose pivot for comparison
 		int pivot = right;
 		int rightmarker = right;
@@ -41,7 +39,7 @@ public class Quicksort {
 			while (left < pivot && array[left] <= array[pivot]) {
 				left++;
 			}
-			//looks for an element smaller than the pivot
+			// looks for an element smaller than the pivot
 			while (rightmarker >= left && array[rightmarker] > array[pivot]) {
 				rightmarker--;
 			}
@@ -57,47 +55,16 @@ public class Quicksort {
 				rightmarker--;
 			}
 		}
-		// return the new pivot point 
+		// return the new pivot point
 
 		return left;
 
 	}
 
-	public static void swap(int[] array, int left, int right) {
+	private static void swap(int[] array, int left, int right) {
 		int tmp = array[left];
 		array[left] = array[right];
 		array[right] = tmp;
-	}
-
-	public static void print(int[] array) {
-		PrintWriter out = new PrintWriter(System.out, true);
-		for (int i : array) {
-			out.print(i + " ");
-		}
-		out.println();
-
-	}
-	
-	public static int[] sorted(int[] array) {
-		quicksort(array);
-		return array;
-	}
-
-	
-	public static void test(int size) {
-		ArrayList <Integer> list = new ArrayList <Integer>();
-		int count=0;
-		for(int i=0;i<size;i++) {
-			list.add((int) (Math.random()*10));
-			count++;
-		}
-		int[] array = new int[count];
-		for(int j=0;j<list.size();j++) {
-			array[j]=list.get(j);
-		}
-		print(array);
-		print(sorted(array));
-		
 	}
 
 }
