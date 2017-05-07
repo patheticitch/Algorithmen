@@ -2,11 +2,12 @@ package alg.a01;
 
 public class Quicksort {
 
-	public static void main(String[] args) {
-
+	public static int[] sort(int[] array) {
+		quicksort(array);
+		return array;
 	}
 
-	public static void quicksort(int[] array) {
+	private static void quicksort(int[] array) {
 		// starts the quicksort
 		quicksort(array, 0, array.length - 1);
 	}
@@ -18,7 +19,7 @@ public class Quicksort {
 			return;
 		else {
 			int pivot = devide(array, left, right);
-			quicksort(array, left, pivot - 1);
+			quicksort(array, left, pivot -1);
 			quicksort(array, pivot + 1, right);
 		}
 
@@ -32,8 +33,8 @@ public class Quicksort {
 		int pivot = right;
 		int rightmarker = right;
 
-		// outer loop terminates when right <= left means when the markers corss
-		while (left <= rightmarker) {
+		// infinite loop terminates when markers cross
+		while (true) {
 
 			// looks for an element larger than the pivot
 			while (left < pivot && array[left] <= array[pivot]) {
@@ -43,7 +44,7 @@ public class Quicksort {
 			while (rightmarker >= left && array[rightmarker] > array[pivot]) {
 				rightmarker--;
 			}
-			// if markers cross swap the left element with the pivot
+			// swaps the left element and the pivot and terminates the loop
 			if (rightmarker <= left) {
 				swap(array, left, pivot);
 				break;
