@@ -7,9 +7,13 @@ public class Test {
 	
 	
 	public static void main(String[] args) {
-		int[] array=createTestList(10);
-		print(array);
-		test(array);
+		int[] array=createTestList(100000);
+		testTime(array);
+		//print(array);
+		//long start = System.currentTimeMillis();
+		//test(array);
+		//long elapsedTimeMillis = System.currentTimeMillis()-start;
+		//System.out.println(elapsedTimeMillis);
 	}
 	
 	public static void print(int[] array) {
@@ -28,7 +32,7 @@ public class Test {
 		ArrayList <Integer> list = new ArrayList <Integer>();
 		int count=0;
 		for(int i=0;i<size;i++) {
-			list.add((int) (Math.random()*100));
+			list.add((int) (Math.random()*1000+i));
 			count++;
 		}
 		int[] array = new int[count];
@@ -40,12 +44,20 @@ public class Test {
 	
 	public static void test (int[] array) {
 		Quicksort.sort(array);
-		print(array);
 		for(int i=0; i<array.length-1;i++) {
 			if(array[i]>array[i+1]) {
 				System.out.println("error at "+i);
 			}
 		}
+		print(array);
+	}
+	
+	public static void testTime(int[] array) {
+		long start = System.currentTimeMillis();
+		Quicksort.sort(array);
+		long elapsedTime = System.currentTimeMillis()-start;
+		System.out.println(elapsedTime+" ms");
+		
 	}
 
 	

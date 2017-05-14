@@ -31,7 +31,7 @@ public class Quicksort {
 	private static int devide(int[] array, int left, int right) {
 		// choose pivot for comparison
 		int pivot = right;
-		int rightmarker = right;
+		
 
 		// infinite loop terminates when markers cross
 		while (true) {
@@ -41,19 +41,19 @@ public class Quicksort {
 				left++;
 			}
 			// looks for an element smaller than the pivot
-			while (rightmarker >= left && array[rightmarker] > array[pivot]) {
-				rightmarker--;
+			while (right >= left && array[right] > array[pivot]) {
+				right--;
 			}
 			// swaps the left element and the pivot and terminates the loop
-			if (rightmarker <= left) {
+			if (right <= left) {
 				swap(array, left, pivot);
 				break;
 			}
 			// else swap values at left and right marker
 			else {
-				swap(array, left, rightmarker);
+				swap(array, left, right);
 				left++;
-				rightmarker--;
+				right--;
 			}
 		}
 		// return the new pivot point
