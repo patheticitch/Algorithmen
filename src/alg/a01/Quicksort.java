@@ -1,6 +1,13 @@
 package alg.a01;
 
 public class Quicksort {
+	/********************************************************************************************
+	 * Methode zum sortieren eines Arrays (Verfahren Quicksort)
+	 * @param array  das zu sortierende Array
+	 * Vorbedingung: das Array muss vom Typ int[] sein
+	 * @return array  das sortierte array
+	 * Effekt: sortiert das gegebene Array
+	 */
 
 	public static int[] sort(int[] array) {
 		quicksort(array);
