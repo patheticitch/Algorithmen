@@ -8,6 +8,7 @@ public class HashTable<K, V> implements Map<K, V> {
 	public int size;
 	public LinkedList<Pair<K, V>>[] array;
 
+	@SuppressWarnings("unchecked")
 	public HashTable(int size) {
 		this.size = size;
 		this.array = new LinkedList[size];
@@ -23,8 +24,6 @@ public class HashTable<K, V> implements Map<K, V> {
 
 	@Override
 	public V put(K key, V value) {
-		// look if there is a key-value pair in the given index
-		// if it is -->
 		int index = hashfunction(key);
 		Pair<K, V> pair = new Pair<K, V>(key, value);
 		if (array[index] == null) {

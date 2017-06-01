@@ -1,5 +1,9 @@
 package alg.a02_1;
 
+import java.io.PrintWriter;
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 public class Test {
 	
 
@@ -13,10 +17,16 @@ public class Test {
 	}
 
 	public static void print(HashTable<Integer,String> table) {
-		for (int i = 0; i < table.size; i++) {
-			System.out.println();
-
+		
+	}
+	
+	public static void printList(LinkedList<Pair<Integer,String>> list,PrintWriter out) {
+		ListIterator <Pair<Integer,String>> iterate = list.listIterator();
+		while(iterate.hasNext()) {
+			Pair<Integer,String> nextPair = iterate.next();
+			out.println(nextPair.getKey()+" "+nextPair.getValue());
 		}
+		out.close();
 	}
 
 }
