@@ -1,12 +1,12 @@
-package alg.a02;
+package alg.a02_1;
 
 import java.util.LinkedList;
 
-public class HashTable implements Map {
+import alg.a02_1.Pair;
 
-	
+public class HashTable<K, V> implements Map<K, V> {
 	public int size;
-	public LinkedList<Pair>[] array;
+	public LinkedList<Pair<K, V>>[] array;
 
 	public HashTable(int size) {
 		this.size = size;
@@ -17,14 +17,18 @@ public class HashTable implements Map {
 		return size;
 	}
 
+	public int hashfunction(K key) {
+		return key.hashCode() % size;
+	}
+
 	@Override
-	public String put(Integer key, String value) {
+	public V put(K key, V value) {
 		// look if there is a key-value pair in the given index
 		// if it is -->
 		int index = hashfunction(key);
-		Pair pair = new Pair(key, value);
+		Pair<K, V> pair = new Pair<K, V>(key, value);
 		if (array[index] == null) {
-			LinkedList<Pair> list = new LinkedList<Pair>();
+			LinkedList<Pair<K, V>> list = new LinkedList<Pair<K, V>>();
 			array[index] = list;
 		} else {
 			// überprüft, ob der gegebene Key bereits an diesem index vorhanen
@@ -32,7 +36,7 @@ public class HashTable implements Map {
 			if (array[index].contains(pair.key) && array[index].contains(pair.hash)) {
 				for (int i = 0; i < array[index].size(); i++) {
 					if (pair.equals(array[index].get(i))) {
-						Pair oldPair = array[index].get(i);
+						Pair<K, V> oldPair = array[index].get(i);
 						array[index].set(i, pair);
 						return oldPair.getValue();
 					}
@@ -45,7 +49,7 @@ public class HashTable implements Map {
 	}
 
 	@Override
-	public String get(Integer key) {
+	public V get(K key) {
 		int index = hashfunction(key);
 		for (int i = 0; i < array[index].size(); i++) {
 			if (array[index].get(i).key.equals(key)) {
@@ -56,20 +60,16 @@ public class HashTable implements Map {
 	}
 
 	@Override
-	public String remove(Integer key) {
+	public V remove(K key) {
 		int index = hashfunction(key);
 		for (int i = 0; i < array[index].size(); i++) {
 			if (array[index].get(i).key.equals(key)) {
-				Pair removedPair = array[index].get(i);
+				Pair<K, V> removedPair = array[index].get(i);
 				array[index].remove(i);
 				return removedPair.getValue();
 			}
 		}
 		return null;
-	}
-
-	public int hashfunction(Integer key) {
-		return key.hashCode() % size;
 	}
 
 }
