@@ -62,6 +62,14 @@ public class Test {
 		return elapsedTime;
 
 	}
+
+	/**
+	 * Die Methode isSorted gibt true zurück wenn das gegebene array sortiert
+	 * ist und false falls es nicht sortiert ist
+	 * 
+	 * @param array	ein int[] array beliebiger größe
+	 * @return -- boolean ture --> soritert || false --> nicht sortiert
+	 */
 	
 	public static boolean isSorted(int[] array) {
 		for(int i=0;i<array.length-1;i++) {
@@ -74,6 +82,13 @@ public class Test {
 		}
 		return true;
 	}
+
+	/**
+	 * Diese Methode tested, ob ein Array sortiert ist über ein file und
+	 * schreibt die Ergebnisse in das File test_2.txt
+	 * 
+	 * @param pathname  Der Pfad zu der Datei, aus der ein Array erstellt werden soll
+	 */
 	
 	public static void testIfSorted(String pathname) {
 		try {
