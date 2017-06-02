@@ -1,13 +1,14 @@
 package alg.a02;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 public class HashTable implements Map {
 
-	
 	public int size;
 	public LinkedList<Pair>[] array;
 
+	@SuppressWarnings("unchecked")
 	public HashTable(int size) {
 		this.size = size;
 		this.array = new LinkedList[size];
@@ -29,13 +30,12 @@ public class HashTable implements Map {
 		} else {
 			// überprüft, ob der gegebene Key bereits an diesem index vorhanen
 			// ist
-			if (array[index].contains(pair.key) && array[index].contains(pair.hash)) {
-				for (int i = 0; i < array[index].size(); i++) {
-					if (pair.equals(array[index].get(i))) {
-						Pair oldPair = array[index].get(i);
-						array[index].set(i, pair);
-						return oldPair.getValue();
-					}
+			// iterate trough the Linked List at given index
+			for (int i = 0; i < array[index].size(); i++) {
+				if (pair.key.equals(array[index].get(i).key)) {
+					Pair oldPair = array[index].get(i);
+					array[index].set(i, pair);
+					return oldPair.getValue();
 				}
 			}
 

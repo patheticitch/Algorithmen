@@ -8,11 +8,11 @@ public class Test {
 	
 
 	public static void main(String[] args) {
-		HashTable<Integer,String> table = new HashTable<Integer,String>(7);
-		table.put(10, "servus welt");
-		System.out.println(table.get(10));
-		table.remove(10);
-		System.out.println(table.get(10));
+		HashTable<String,String> table = new HashTable<String,String>(7);
+		table.put("hallo", "servus welt");
+		System.out.println(table.get("hallo"));
+		table.remove("hello");
+		System.out.println(table.get("hello"));
 
 	}
 

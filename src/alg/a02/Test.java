@@ -8,6 +8,10 @@ public class Test {
 		System.out.println(table.get(10));
 		table.remove(10);
 		System.out.println(table.get(10));
+		table.put(10, "servus welt");
+		System.out.println(table.get(10));
+		table.put(10, "jello");
+		System.out.println(table.get(10));
 
 	}
 
