@@ -12,22 +12,26 @@ public class HashTable<K, V> implements Map<K, V> {
 		this.size = size;
 		this.array = new LinkedList[size];
 	}
-
+	
 	/**
 	 * Methode zur Bestimmung des Indexes innerhalb des Arrays mithilfe einer
-	 * hashfunction und abhängig von der größe des Arrays
+	 * hashfunction und der Modulo-Operation, abhängig von der größe des Arrays
 	 * @param key	der übergebene Key eines key,value pairs
 	 * @return int index --> der in dem array vergebene index
+	 * Effekt: Index für den übergebenden Key wird bestimmt
 	 */
 	public int hashfunction(K key) {
 		return key.hashCode() % size;
 	}
+	
 	/**
-	 * fuegt ein Schluessel-Wert-Paar in die Map ein
+	 * Methode erstellt ein neues Schlüssel-Wert-Paar und fügt dieses in die LinkedList (im Array an der Stelle des Indexes von key) ein
+	 * wenn noch kein Paar an diesem Index gespeichert wurde, wird zuerst eine neue Liste erstellt
 	 * @param key der Schluessel
 	 * @param value der Wert
-	 * @return falls es schon einen Wert mit Schluessel key in der Map gab,
+	 * @return falls es schon einen Wert mit Schluessel key in der Map gibt,
 	 *   wird der alte Wert entfernt und zurueckgegeben; sonst wird null zurueckgegeben
+	 * Effekt: fügt ein Schlüssel-Wert-Paar in die Map ein und ersetzt ggf. den alten Wert
 	 */
 	@Override
 	public V put(K key, V value) {
@@ -48,9 +52,7 @@ public class HashTable<K, V> implements Map<K, V> {
 					array[index].set(i, pair);
 					return oldPair.getValue();
 				}
-
 			}
-
 		}
 		array[index].add(pair);
 		return null;
@@ -58,34 +60,34 @@ public class HashTable<K, V> implements Map<K, V> {
 	
 	
 	/**
-	 * bestimmt den Wert zu einem Schluessel in der Map
+	 * prüft, ob der übergebende Schlüssel in der Liste(am Index von key) vorhanden ist und gibt den zugehörigen Wert zurück
 	 * @param key der Schluessel
 	 * @return den Wert zum Schluessel key, falls ein entsprechendes Schluessel-Wert-Paar vorhanden ist;
 	 *   null sonst
+	 * Effekt: bestimmt den Wert zum übergebenden Schlüssel in der Map
 	 */
 	@Override
 	public V get(K key) {
 		int index = hashfunction(key);
 		if (array[index] != null) {
 			for (int i = 0; i < array[index].size(); i++) {
-				// prüft ob der in dem array hinterlegte key dem weitergegebenen
-				// key gleicht,wenn ja wird zurückgegeben
 				if (array[index].get(i).key.equals(key)) {
 					return array[index].get(i).getValue();
 				}
 			}
 		}
-
 		return null;
 	}
 	
 	
 	
 	/**
-	 * entfernt ein Schluessel-Wert-Paar aus der Map
+	 * prüft, ob zu dem übergebenen Schlüssel in der Liste(am Index von key) ein Schlüssel-Wert-Paar vorhanden ist, 
+	 * löscht dieses und gibt den zugehörigen Wert zurück
 	 * @param key der Schluessel
 	 * @return der Wert zu dem Schluessel, falls ein entsprechendes Schluessel-Wert-Paar vorhanden ist;
 	 *   null sonst
+	 * Effekt: entfernt ein Schlüssel-Wert-Paar aus der Map
 	 */
 	@Override
 	public V remove(K key) {
@@ -99,8 +101,6 @@ public class HashTable<K, V> implements Map<K, V> {
 				}
 			}
 		}
-
 		return null;
 	}
-
 }
