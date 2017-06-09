@@ -47,13 +47,22 @@ public class Quicksort {
 	
 	/********************************************************************************************
 	 * Methode devide wählt pivot point zum Vergleich an position array[right]
-	 * aus und durchsucht das Array von links nach Werten > array[pivot] und von
-	 * rechts > array[pivot] und ruft Methode swap auf.
+	 * aus und durchsucht das Array von links nach Werten größer als
+	 * array[pivot] und von rechts kleiner als array[pivot]. Falls Werte
+	 * gefunden werden, und sich die Marker von links und rechts noch nicht
+	 * gekreuzt haben, werden die jeweiligen Werte an den Markern ausgewechselt.
+	 * Bei einer Überschneidung der Marker terminiert die vorliegende Schleife
+	 * und der Wert an array[left] wird mit array[pivot] ausgetauscht. Es wird
+	 * der Punkt, an dem sich der Wert von left zurückgegeben, an dem sich nun
+	 * der pivot befindet. Alle Werte links von dem pivot sind kleiner und
+	 * rechts davon sind größer als er selber.
+	 * 
 	 * @param array das zu sortierende array
-	 * @param left linker Marker des Teilarrays
-	 * @param  right rechter marker des Teilarrays
-	 * @return left	die endgültige Position des einsortierten Pivot Elements 
-	 * Effekt: Vergleicht Werte des Arrays mit einem Pivot Element und sortiert dieses an die korrekte Stelle ein
+	 * @param left  linker Marker des Teilarrays
+	 * @param right  rechter marker des Teilarrays
+	 * @return left die endgültige Position des einsortierten Pivot Elements
+	 *         Effekt: Vergleicht Werte des Arrays mit einem Pivot Element und
+	 *         sortiert dieses an die korrekte Stelle ein
 	 ********************************************************************************************/
 	
 	private static int devide(int[] array, int left, int right) {

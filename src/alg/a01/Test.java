@@ -85,9 +85,11 @@ public class Test {
 
 	/**
 	 * Diese Methode tested, ob ein Array sortiert ist über ein file und
-	 * schreibt die Ergebnisse in das File test_2.txt
+	 * schreibt die Ergebnisse in das File test_2.txt. Falls das Array nach
+	 * Aufruf von Quicksort.sort() nicht sortiert ist, wird is not sorted
+	 * ausgegeben.
 	 * 
-	 * @param pathname  Der Pfad zu der Datei, aus der ein Array erstellt werden soll
+	 * @param pathname Der Pfad zu der Datei, aus der ein Array erstellt werden soll
 	 */
 	
 	public static void testIfSorted(String pathname) {
