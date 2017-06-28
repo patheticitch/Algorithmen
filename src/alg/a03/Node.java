@@ -4,6 +4,7 @@ public class Node {
 	private Vertex vertex;
 	private Vertex pred;
 	protected  int dist;
+	protected boolean visited=false;
 	
 	public Node (Vertex v,Vertex pred,int d) {
 		this.vertex=v;

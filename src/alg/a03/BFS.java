@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 import java.util.Queue;
 
 public class BFS {
@@ -51,16 +52,23 @@ public class BFS {
 	}
 	
 	private LinkedList<Vertex> getShortestPathBetween(int start, int end) {
-		BreadthSearch(start, end);
-		LinkedList<Node> completedSearch = new LinkedList<Node>(this.visitedList);
+		BFS search = new BFS(this.graph);
+		search.BreadthSearch(start, end);
+		LinkedList<Node> completedSearch = new LinkedList<Node>(search.visitedList);
 		LinkedList<Vertex> shortest = new LinkedList<Vertex>();
-		Node last = completedSearch.getLast();
-		shortest.add(last.getVertex());
-		while (getPred(completedSearch, last) != null) {
-			Node pred = getPred(completedSearch, last);
-			shortest.add(pred.getVertex());
-			last = pred;
+		try{
+			Node last = completedSearch.getLast();
+			shortest.add(last.getVertex());
+			while (getPred(completedSearch, last) != null) {
+				Node pred = getPred(completedSearch, last);
+				shortest.add(pred.getVertex());
+				last = pred;
+			}
 		}
+		catch(NoSuchElementException e) {
+			System.out.println(start);
+		}
+		
 		return shortest;
 
 	}
@@ -89,7 +97,7 @@ public class BFS {
 	}
 
 	private void addToVisited(Node v) {
-		if (!isVisited(v)) {
+		if (!isVisited(v.getVertex())) {
 			visitedList.add(v);
 		}
 	}
@@ -99,18 +107,19 @@ public class BFS {
 		Collection<Vertex> neighbors = graph.getNeighbours(v.getVertex());
 		Iterator<Vertex> nIt = neighbors.iterator();
 		while (nIt.hasNext()) {
-			Node nextVertex = new Node(nIt.next(), v.getVertex(), v.dist + 1);
+			Vertex nextVertex = nIt.next();
 			if (!isVisited(nextVertex)) {
-				queue.add(nextVertex);
+				queue.add(new Node(nextVertex, v.getVertex(), v.dist + 1));
 			}
 
 		}
 	}
 
-	private boolean isVisited(Node v) {
-		if (visitedList.contains(v)) {
-			// System.out.println("contains "+v);
-			return true;
+	private boolean isVisited(Vertex v) {
+		for(Node n: visitedList) {
+			if(n.getVertex().equals(v)){
+				return true;
+			}
 		}
 		return false;
 	}
